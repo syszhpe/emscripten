@@ -1931,6 +1931,7 @@ class libwasmfs(DebugLibrary, AsanInstrumentedLibrary, MTLibrary):
         filenames=['fetch_backend.cpp',
                    'ignore_case_backend.cpp',
                    'js_file_backend.cpp',
+                   'js_workerfs_backend.cpp',
                    'memory_backend.cpp',
                    'node_backend.cpp',
                    'opfs_backend.cpp'])

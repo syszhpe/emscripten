@@ -89,6 +89,7 @@ global.LibraryManager = {
         libraries = libraries.concat([
           'library_wasmfs.js',
           'library_wasmfs_js_file.js',
+          'library_wasmfs_js_workerfs.js',
           'library_wasmfs_jsimpl.js',
           'library_wasmfs_fetch.js',
           'library_wasmfs_node.js',

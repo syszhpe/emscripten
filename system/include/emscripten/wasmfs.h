@@ -43,6 +43,9 @@ int wasmfs_unmount(intptr_t path);
 // Creates a JSFile Backend in the new file system.
 backend_t wasmfs_create_js_file_backend(void);
 
+// Creates a JS WorkerFS Backend in the new file system.
+backend_t wasmfs_create_js_workerfs_backend(void);
+
 // A function that receives a void* and returns a backend.
 typedef backend_t (*backend_constructor_t)(void*);
 
