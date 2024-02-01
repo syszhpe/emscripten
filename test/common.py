@@ -1573,12 +1573,9 @@ class RunnerCore(unittest.TestCase, metaclass=RunnerMeta):
   def do_runf(self, filename, expected_output=None, **kwargs):
     return self._build_and_run(filename, expected_output, **kwargs)
 
-  ## Just like `do_run` but with filename of expected output
-  def do_run_from_file(self, filename, expected_output_filename, **kwargs):
-    return self._build_and_run(filename, read_file(expected_output_filename), **kwargs)
-
-  def do_run_in_out_file_test(self, *path, **kwargs):
-    srcfile = test_file(*path)
+  def do_run_in_out_file_test(self, srcfile, **kwargs):
+    if not os.path.exists(srcfile):
+      srcfile = test_file(srcfile)
     out_suffix = kwargs.pop('out_suffix', '')
     outfile = shared.unsuffixed(srcfile) + out_suffix + '.out'
     if EMTEST_REBASELINE:
@@ -1881,13 +1878,14 @@ class BrowserCore(RunnerCore):
   @classmethod
   def browser_restart(cls):
     # Kill existing browser
-    logger.info("Restarting browser process")
+    logger.info('Restarting browser process')
     cls.browser_proc.terminate()
     # If the browser doesn't shut down gracefully (in response to SIGTERM)
     # after 2 seconds kill it with force (SIGKILL).
     try:
       cls.browser_proc.wait(2)
     except subprocess.TimeoutExpired:
+      logger.info('Browser did not respond to `terminate`.  Using `kill`')
       cls.browser_proc.kill()
       cls.browser_proc.wait()
     cls.browser_open(cls.harness_url)
