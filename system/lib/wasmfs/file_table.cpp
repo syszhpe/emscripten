@@ -81,8 +81,7 @@ int OpenFileState::create(std::shared_ptr<File> file,
     dirents.insert(dirents.end(), entries->begin(), entries->end());
   }
 
-  out = std::make_shared<OpenFileState>(
-    private_key{0}, flags, file, std::move(dirents));
+  out = std::make_shared<OpenFileState>(flags, file, std::move(dirents));
   return 0;
 }
 

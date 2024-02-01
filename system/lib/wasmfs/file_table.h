@@ -67,8 +67,7 @@ public:
   // in the open directory.
   const std::vector<Directory::Entry> dirents;
 
-  OpenFileState(private_key,
-                oflags_t flags,
+  OpenFileState(oflags_t flags,
                 std::shared_ptr<File> file,
                 std::vector<Directory::Entry>&& dirents)
     : file(file), flags(flags), dirents(std::move(dirents)) {}

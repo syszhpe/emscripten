@@ -191,7 +191,7 @@ public:
     }
   };
 
-private:
+protected:
   // The directory cache, or `dcache`, stores `File` objects for the children of
   // each directory so that subsequent lookups do not need to query the backend.
   // It also supports cross-backend mount point children that are stored
@@ -204,7 +204,6 @@ private:
   // TODO: Use a cache data structure with smaller code size.
   std::map<std::string, DCacheEntry> dcache;
 
-protected:
   // Return the `File` object corresponding to the file with the given name or
   // null if there is none.
   virtual std::shared_ptr<File> getChild(const std::string& name) = 0;
